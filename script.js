@@ -190,10 +190,6 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
     .from(element)
     .set({
       pagebreak: { mode: ["css"] }, // Avoid cutting elements
-      html2canvas: {
-        scale: 2, // Increase scale to improve quality, you can adjust this
-        dpi: 205, // Set DPI (dots per inch) for higher resolution
-      },
       margin: [4, 0, 4, 0],
     })
     .save(paramsObject["3"].trim() + ".pdf");

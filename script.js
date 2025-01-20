@@ -60,7 +60,10 @@ function problems(problems) {
     "Проблем нет": " ",
   };
 
-  const problemsList = problems.split(", ").map((problem) => problem.trim());
+  // Default to a single empty element if problems is null or undefined
+  const problemsList = problems
+    ? problems.split(", ").map((p) => p.trim())
+    : [""];
   const detailedProblems = problemsList.map(
     (problem) => context[problem] || ""
   );

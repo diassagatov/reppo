@@ -40,7 +40,8 @@ body {
 }
 
 .logo img {
-  width: 50px;
+  width: 30px;
+  margin-right: 4px;
 }
 
 #downloadBtn {

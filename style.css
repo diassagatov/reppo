@@ -26,7 +26,6 @@ body {
 
 .controls {
   width: 793px;
-  aspect-ratio: 0.7;
   display: flex;
   justify-content: space-between;
 }

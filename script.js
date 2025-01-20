@@ -85,28 +85,53 @@ function activityInfo(activity) {
   return "";
 }
 
-// Get URL parameters
-const params = new URLSearchParams(window.location.search);
+//experimantal
+const fullUrl = window.location.href; // Full URL including query parameters
+console.log(fullUrl);
+const paramsObject = {};
+// Extract the query string from the full URL
+const queryString = fullUrl.split("?")[1]; // Everything after the '?'
 
+// Check if query string exists
+if (queryString) {
+  // Split query string into key-value pairs
+  const paramsArray = queryString.split("&");
+
+  // Initialize an empty object to hold parsed parameters
+
+  // Loop through each key-value pair and split them into the object
+  paramsArray.forEach((param) => {
+    const [key, value] = param.split("=");
+    paramsObject[decodeURIComponent(key)] = decodeURIComponent(value);
+  });
+
+  console.log(paramsObject); // Logs the parsed parameters as an object
+} else {
+  console.log("No query parameters found.");
+}
+//experimantal
 // Initialize report data with defaults
 const reportData = {
-  full_name: params.get("3"),
-  attendance: params.get("5"),
-  lessons: params.get("4"),
-  homeworks_turned: params.get("7"),
-  homeworks_overall: params.get("6"),
-  activity: params.get("10"),
-  month: params.get("month"),
+  full_name: paramsObject["3"],
+  attendance: paramsObject["5"],
+  lessons: paramsObject["4"],
+  homeworks_turned: paramsObject["7"],
+  homeworks_overall: paramsObject["6"],
+  activity: paramsObject["10"],
+  month: paramsObject["month"],
 };
 
 reportData["attendance_info"] = attendanceInfo(
-  params.get("4"),
-  params.get("5")
+  paramsObject["4"],
+  paramsObject["5"]
 );
 
-reportData["homeworks_info"] = homeworksInfo(params.get("6"), params.get("7"));
+reportData["homeworks_info"] = homeworksInfo(
+  paramsObject["6"],
+  paramsObject["7"]
+);
 
-const problem_list = problems(params.get("9"));
+const problem_list = problems(paramsObject["9"]);
 const problem_container = document.querySelector(".problem_container");
 let was = 0;
 problem_list.map((element) => {
@@ -124,7 +149,7 @@ if (was == 0) {
   problem_container.appendChild(prob);
 }
 
-const lessons_list = params.get("8").split(".,");
+const lessons_list = paramsObject["8"].split(".,");
 const lessons_cont = document.querySelector(".what_learned");
 lessons_list.map((element) => {
   if (element != " ") {
@@ -135,9 +160,7 @@ lessons_list.map((element) => {
   }
 });
 
-console.log(params);
-
-const skills_list = (params.get("11") || "").split(",");
+const skills_list = (paramsObject["11"] || "").split(",");
 const skills_cont = document.querySelector(".skills");
 
 skills_list.map((element) => {
@@ -149,7 +172,7 @@ skills_list.map((element) => {
   }
 });
 
-reportData["activity_info"] = activityInfo(params.get("p10"));
+reportData["activity_info"] = activityInfo(paramsObject["10"]);
 
 const attend_percent =
   // Populate template with data
@@ -173,5 +196,5 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
       },
       margin: [4, 0, 4, 0],
     })
-    .save(params.get("3").trim() + ".pdf");
+    .save(paramsObject["3"].trim() + ".pdf");
 });

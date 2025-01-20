@@ -123,8 +123,8 @@ if (was == 0) {
   prob.innerText = "Проблем по ученику не было отмечено.";
   problem_container.appendChild(prob);
 }
-console.log(params.get("8"));
-const lessons_list = params.get("8").split(",");
+
+const lessons_list = params.get("8").split(".,");
 const lessons_cont = document.querySelector(".what_learned");
 lessons_list.map((element) => {
   if (element != " ") {

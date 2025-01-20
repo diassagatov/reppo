@@ -160,7 +160,7 @@ lessons_list.map((element) => {
   }
 });
 
-const skills_list = (paramsObject["11"] || "").split(",");
+const skills_list = (paramsObject["11"] || "").split(";,");
 const skills_cont = document.querySelector(".skills");
 
 skills_list.map((element) => {

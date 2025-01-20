@@ -90,26 +90,23 @@ const params = new URLSearchParams(window.location.search);
 
 // Initialize report data with defaults
 const reportData = {
-  full_name: params.get("p3"),
-  attendance: params.get("p5"),
-  lessons: params.get("p4"),
-  homeworks_turned: params.get("p7"),
-  homeworks_overall: params.get("p6"),
-  activity: params.get("p10"),
+  full_name: params.get("3"),
+  attendance: params.get("5"),
+  lessons: params.get("4"),
+  homeworks_turned: params.get("7"),
+  homeworks_overall: params.get("6"),
+  activity: params.get("10"),
   month: params.get("month"),
 };
 
 reportData["attendance_info"] = attendanceInfo(
-  params.get("p4"),
-  params.get("p5")
+  params.get("4"),
+  params.get("5")
 );
 
-reportData["homeworks_info"] = homeworksInfo(
-  params.get("p6"),
-  params.get("p7")
-);
+reportData["homeworks_info"] = homeworksInfo(params.get("6"), params.get("7"));
 
-const problem_list = problems(params.get("p9"));
+const problem_list = problems(params.get("9"));
 const problem_container = document.querySelector(".problem_container");
 let was = 0;
 problem_list.map((element) => {
@@ -126,8 +123,8 @@ if (was == 0) {
   prob.innerText = "Проблем по ученику не было отмечено.";
   problem_container.appendChild(prob);
 }
-
-const lessons_list = params.get("p8").split(",");
+console.log(params.get("8"));
+const lessons_list = params.get("8").split(",");
 const lessons_cont = document.querySelector(".what_learned");
 lessons_list.map((element) => {
   if (element != " ") {
@@ -138,10 +135,13 @@ lessons_list.map((element) => {
   }
 });
 
-const skills_list = params.get("p11").split(",");
+console.log(params);
+
+const skills_list = (params.get("11") || "").split(",");
 const skills_cont = document.querySelector(".skills");
+
 skills_list.map((element) => {
-  if (element != " ") {
+  if (element.trim() !== "") {
     const prob = document.createElement("div");
     prob.classList.add("lesson");
     prob.innerText = element;
@@ -173,5 +173,5 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
       },
       margin: [4, 0, 4, 0],
     })
-    .save(params.get("p3").trim() + ".pdf");
+    .save(params.get("3").trim() + ".pdf");
 });

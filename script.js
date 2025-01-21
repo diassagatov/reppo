@@ -403,7 +403,9 @@ lessons_list.slice(1).map((element) => {
   if (element != " ") {
     const prob = document.createElement("div");
     prob.classList.add("lesson");
-    prob.innerText = element + " урок. " + source[parseInt(element)];
+    prob.innerText = source[parseInt(element)]
+      ? element + " урок. " + source[parseInt(element)]
+      : element;
     lessons_cont.appendChild(prob);
   }
 });

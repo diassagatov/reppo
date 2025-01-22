@@ -236,7 +236,7 @@ const frontpro = {
   72: "Часть 4 - Создание реального проекта от начала до конца — Социальная сеть/Интернет-магазин - Освоил публикацию сайта на Netlify и создание ссылки для общего доступа.",
 };
 
-const skillHashFront = {
+const skillHash = {
   1: "Понимание сути сайтов и их работы",
   2: "Анализ простого сайта",
   3: "Умение создавать базовую структуру HTML-документа",
@@ -273,9 +273,6 @@ const skillHashFront = {
   34: "Умение создавать, изменять и использовать массивы для хранения и обработки данных",
   35: "Навык создания функций, передача аргументов, возвращение значений",
   36: "Разработка логики и функционала сайта, используя JavaScript",
-};
-
-const skillHashScratch = {
   37: "Умение работать в Scratch, создавать проект и запускать его",
   38: "Создание и разработка сценариев для мультфильмов и игр",
   39: "Добавление спрайтов в проект",
@@ -299,9 +296,6 @@ const skillHashScratch = {
   57: "Разработка игр с постепенным увеличением сложности каждого уровня",
   58: "Разработка интерактивных историй, мультфильмов с нуля",
   59: "Разработка игр разных жанров с нуля",
-};
-
-const skillHashPython = {
   60: "Понимание основ синтаксиса языка программирования Python",
   61: "Навык создания простых программ",
   62: "Работа с переменными для хранения данных",
@@ -355,9 +349,6 @@ const skillHashPython = {
   110: "Знание работы с базами данных",
   111: "Удаление, редактирование, вывод записей из базы данных",
   112: "Разработка проекта с использованием фреймворка Django",
-};
-
-const skillHashFrontpro = {
   113: "Понимание роли JavaScript в веб-разработке и его базовых концепций",
   114: "Овладение основами работы с переменными и различными типами данных",
   115: "Умение создавать и вычислять сложные выражения",
@@ -597,19 +588,10 @@ lessons_list.slice(1).map((element) => {
   }
 });
 
-const mapLessonList2 = {
-  фронт: skillHashFront,
-  скретч: skillHashScratch,
-  питон: skillHashPython,
-  фронтпро: skillHashFrontpro,
-};
-
-const source2 = mapLessonList2[lessons_list[0]];
-// Split the semicolon-separated string into an array of numbers
 const ids = paramsObject["11"].split(";").map((id) => parseInt(id.trim()));
 console.log(ids);
 // Convert the numbers back into skill names
-const skills = ids.map((id) => source2[id]);
+const skills = ids.map((id) => skillHash[id]);
 
 const skills_list = skills;
 const skills_cont = document.querySelector(".skills");

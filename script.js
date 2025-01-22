@@ -604,14 +604,11 @@ const mapLessonList2 = {
 };
 
 const source2 = mapLessonList2[lessons_list[0]];
-console.log(paramsObject["11"] + " asdojasiodjsoi");
 // Split the semicolon-separated string into an array of numbers
 const ids = paramsObject["11"].split(";").map((id) => parseInt(id.trim()));
-
+console.log(ids);
 // Convert the numbers back into skill names
-const skills = ids
-  .map((id) => source[id])
-  .filter((skill) => skill !== undefined); // Filter out invalid IDs
+const skills = ids.map((id) => source2[id]);
 
 const skills_list = skills;
 const skills_cont = document.querySelector(".skills");

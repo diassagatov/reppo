@@ -55,6 +55,19 @@ body {
 #downloadBtn:hover {
   transform: scale(1.07);
 }
+#downloadBtn2 {
+  height: 40px;
+  margin: auto 0;
+  margin-right: 5px;
+  border-radius: 10px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#downloadBtn2:hover {
+  transform: scale(1.07);
+}
 
 .report {
   margin: 0 auto;

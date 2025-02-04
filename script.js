@@ -602,7 +602,7 @@ const skillMapFrontPro = {
   2: 114,
   3: 115,
   4: 116,
-  5: 117,
+  5: 118,
   6: 118,
   7: 119,
   8: 120,
@@ -910,3 +910,20 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
     })
     .save(paramsObject["3"].trim() + ".pdf");
 });
+
+function addDownloadBtnListener() {
+  const downloadBtn = document.getElementById("downloadBtn2");
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", function () {
+      const currentPageURL = window.location.href;
+      const waLink = `https://wa.me/?text=${encodeURIComponent(
+        currentPageURL
+      )}`;
+      window.location.href = waLink;
+    });
+  }
+}
+
+// Call the function to set up the event listener
+addDownloadBtnListener();

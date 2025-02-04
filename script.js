@@ -847,11 +847,26 @@ lessons_list.slice(1).map((element) => {
   }
 });
 
+const exceptions = [
+  "Сдает аттестацию",
+  "Выполняет практические задания",
+  "Работает над дипломным проектом",
+  "Работает над проектом  Django",
+  "Выполняет доп задания",
+];
+
+const finalStage = lessons_list.slice(1).some((lesson) => {
+  console.log(lesson);
+  return exceptions.includes(lesson.trim());
+});
+
+console.log("in final stage : ", finalStage); // true
+
 const mapLessonList2 = {
-  фронт: [skillHashFront, 1, skillMapFront],
-  скретч: [skillHashScratch, 37, skillMapScratch],
-  питон: [skillHashPython, 60, skillMapPython],
-  фронтпро: [skillHashFrontpro, 113, skillMapFrontPro],
+  фронт: [skillHashFront, 1, skillMapFront, 36],
+  скретч: [skillHashScratch, 37, skillMapScratch, 59],
+  питон: [skillHashPython, 60, skillMapPython, 112],
+  фронтпро: [skillHashFrontpro, 113, skillMapFrontPro, 174],
 };
 
 const heighestLesson = lessons_list.slice(1)[lessons_list.length - 2];
@@ -859,7 +874,14 @@ const heighestLesson = lessons_list.slice(1)[lessons_list.length - 2];
 const source2 = mapLessonList2[lessons_list[0]];
 console.log("source = ", source2);
 
-const topSkill = source2[2][parseInt(heighestLesson)];
+let topSkill = 0;
+try {
+  topSkill = source2[2][parseInt(heighestLesson)];
+} catch {
+  console.log("lol");
+}
+
+if (finalStage) topSkill = source2[3];
 
 console.log("top skiill= ", topSkill);
 
@@ -910,20 +932,3 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
     })
     .save(paramsObject["3"].trim() + ".pdf");
 });
-
-function addDownloadBtnListener() {
-  const downloadBtn = document.getElementById("downloadBtn2");
-
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", function () {
-      const currentPageURL = window.location.href;
-      const waLink = `https://wa.me/?text=${encodeURIComponent(
-        currentPageURL
-      )}`;
-      window.location.href = waLink;
-    });
-  }
-}
-
-// Call the function to set up the event listener
-addDownloadBtnListener();
